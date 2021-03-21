@@ -17,8 +17,21 @@ describe('API Tests', () => {
             .then((resp) => console.log(resp.body))
             .catch((err) => console.log(err));
     });
-    it('Makes a PUT req', () => {});
-    it('Makes a DELETE req', () => {});
+    it('Makes a PUT req', () => {
+        request
+            .put('/posts/1')
+            .send({ userId: 100, title: 'example title' })
+            .expect(200)
+            .then((resp) => console.log(resp.body))
+            .catch((err) => console.log(err));
+    });
+    it('Makes a DELETE req', () => {
+        request
+            .delete('/posts/1')
+            .expect(200)
+            .then((resp) => console.log(resp.status))
+            .catch((err) => console.log(err));
+    });
     it('Set Headers for request', () => {});
     it('Set Body for the request', () => {});
     it('Sucessfully returns 200 code', () => {});
