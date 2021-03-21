@@ -1,8 +1,9 @@
 const request = require('supertest')('https://jsonplaceholder.typicode.com');
+const expect = require('chai').expect;
 
 describe('API Tests', () => {
     it('Makes a GET req', () => {
-        request
+        return request
             .get('/comments')
             .expect(200)
             .then((resp) => console.log(resp.status))
@@ -10,7 +11,7 @@ describe('API Tests', () => {
     });
 
     it('Makes a POST req', () => {
-        request
+        return request
             .post('/posts')
             .send({ userId: 100, title: 'example title' })
             .expect(201)
@@ -19,7 +20,7 @@ describe('API Tests', () => {
     });
 
     it('Makes a PUT req', () => {
-        request
+        return request
             .put('/posts/1')
             .send({ userId: 100, title: 'example title' })
             .expect(200)
@@ -28,7 +29,7 @@ describe('API Tests', () => {
     });
 
     it('Makes a DELETE req', () => {
-        request
+        return request
             .delete('/posts/1')
             .expect(200)
             .then((resp) => console.log(resp.status))
@@ -36,7 +37,7 @@ describe('API Tests', () => {
     });
 
     it('Set Headers for request', () => {
-        request
+        return request
             .get('/posts/1')
             .set('Accept', 'application/json')
             .set('Cookie', '023u0jd0808108h1f')
@@ -47,7 +48,7 @@ describe('API Tests', () => {
     });
 
     it('Set Body for the request', () => {
-        request
+        return request
             .post('/posts')
             .send({ userId: 100, title: 'example title' })
             .expect(201)
@@ -55,7 +56,12 @@ describe('API Tests', () => {
             .catch((err) => console.log(err));
     });
 
-    it('Sucessfully returns 200 code', () => {});
+    it('Sucessfully returns 200 code', () => {
+        return request
+            .get('/comments')
+            .then((resp) => expect(resp.status).to.equal(1));
+        //.catch((err) => console.log(err));
+    });
 
     it('Chains request to a new response', () => {});
 });
