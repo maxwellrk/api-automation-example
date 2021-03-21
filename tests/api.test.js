@@ -1,7 +1,6 @@
 const request = require('supertest')('https://jsonplaceholder.typicode.com');
 
 describe('API Tests', () => {
-    console.log('hello');
     it('Makes a GET req', () => {
         request
             .get('/comments')
@@ -9,6 +8,7 @@ describe('API Tests', () => {
             .then((resp) => console.log(resp.status))
             .catch((err) => console.log(err));
     });
+
     it('Makes a POST req', () => {
         request
             .post('/posts')
@@ -17,6 +17,7 @@ describe('API Tests', () => {
             .then((resp) => console.log(resp.body))
             .catch((err) => console.log(err));
     });
+
     it('Makes a PUT req', () => {
         request
             .put('/posts/1')
@@ -25,6 +26,7 @@ describe('API Tests', () => {
             .then((resp) => console.log(resp.body))
             .catch((err) => console.log(err));
     });
+
     it('Makes a DELETE req', () => {
         request
             .delete('/posts/1')
@@ -32,8 +34,21 @@ describe('API Tests', () => {
             .then((resp) => console.log(resp.status))
             .catch((err) => console.log(err));
     });
-    it('Set Headers for request', () => {});
+
+    it('Set Headers for request', () => {
+        request
+            .get('/posts/1')
+            .set('Accept', 'application/json')
+            .set('Cookie', '023u0jd0808108h1f')
+            .send({ userId: 100, title: 'example title' })
+            .expect(200)
+            .then((resp) => console.log(resp.body))
+            .catch((err) => console.log(err));
+    });
+
     it('Set Body for the request', () => {});
+
     it('Sucessfully returns 200 code', () => {});
+
     it('Chains request to a new response', () => {});
 });
