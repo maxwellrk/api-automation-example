@@ -6,8 +6,7 @@ describe('API Tests', () => {
         return request
             .get('/comments')
             .expect(200)
-            .then((resp) => console.log(resp.status))
-            .catch((err) => console.log(err));
+            .then((resp) => console.log(resp.status));
     });
 
     it('Makes a POST req', () => {
@@ -15,8 +14,7 @@ describe('API Tests', () => {
             .post('/posts')
             .send({ userId: 100, title: 'example title' })
             .expect(201)
-            .then((resp) => console.log(resp.body))
-            .catch((err) => console.log(err));
+            .then((resp) => console.log(resp.body));
     });
 
     it('Makes a PUT req', () => {
@@ -24,16 +22,14 @@ describe('API Tests', () => {
             .put('/posts/1')
             .send({ userId: 100, title: 'example title' })
             .expect(200)
-            .then((resp) => console.log(resp.body))
-            .catch((err) => console.log(err));
+            .then((resp) => console.log(resp.body));
     });
 
     it('Makes a DELETE req', () => {
         return request
             .delete('/posts/1')
             .expect(200)
-            .then((resp) => console.log(resp.status))
-            .catch((err) => console.log(err));
+            .then((resp) => console.log(resp.status));
     });
 
     it('Set Headers for request', () => {
@@ -43,8 +39,7 @@ describe('API Tests', () => {
             .set('Cookie', '023u0jd0808108h1f')
             .send({ userId: 100, title: 'example title' })
             .expect(200)
-            .then((resp) => console.log(resp.body))
-            .catch((err) => console.log(err));
+            .then((resp) => console.log(resp.body));
     });
 
     it('Set Body for the request', () => {
@@ -52,15 +47,13 @@ describe('API Tests', () => {
             .post('/posts')
             .send({ userId: 100, title: 'example title' })
             .expect(201)
-            .then((resp) => console.log(resp.body))
-            .catch((err) => console.log(err));
+            .then((resp) => console.log(resp.body));
     });
 
     it('Sucessfully returns 200 code', () => {
         return request
             .get('/comments')
-            .then((resp) => expect(resp.status).to.equal(1));
-        //.catch((err) => console.log(err));
+            .then((resp) => expect(resp.status).to.equal(200));
     });
 
     it('Chains request to a new response', () => {});
