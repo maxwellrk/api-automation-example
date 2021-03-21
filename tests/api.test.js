@@ -46,7 +46,14 @@ describe('API Tests', () => {
             .catch((err) => console.log(err));
     });
 
-    it('Set Body for the request', () => {});
+    it('Set Body for the request', () => {
+        request
+            .post('/posts')
+            .send({ userId: 100, title: 'example title' })
+            .expect(201)
+            .then((resp) => console.log(resp.body))
+            .catch((err) => console.log(err));
+    });
 
     it('Sucessfully returns 200 code', () => {});
 
